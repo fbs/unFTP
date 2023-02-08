@@ -1131,6 +1131,36 @@ dependencies = [
 [[package]]
 name = "libunftp"
 version = "0.18.8"
+dependencies = [
+ "async-trait",
+ "bitflags",
+ "bytes",
+ "chrono",
+ "derive_more",
+ "futures-util",
+ "getrandom",
+ "lazy_static",
+ "md-5",
+ "moka",
+ "prometheus",
+ "proxy-protocol",
+ "rustls",
+ "rustls-pemfile 1.0.2",
+ "slog",
+ "slog-stdlog",
+ "thiserror",
+ "tokio",
+ "tokio-rustls",
+ "tokio-util",
+ "tracing",
+ "tracing-attributes",
+ "uuid",
+ "x509-parser",
+]
+
+[[package]]
+name = "libunftp"
+version = "0.18.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6001671330f675f8c86962c27fc527b8e844718833b091945e597bffb94d4227"
 dependencies = [
@@ -2635,7 +2665,7 @@ dependencies = [
  "hyper",
  "hyper-rustls",
  "lazy_static",
- "libunftp",
+ "libunftp 0.18.8",
  "pretty_assertions",
  "prometheus",
  "serde",
@@ -2657,8 +2687,6 @@ dependencies = [
 [[package]]
 name = "unftp-auth-jsonfile"
 version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f08d22242f80d1c9f89bd5d2af974d8537e703f1b7d5c0b5c87c20d8978e9061"
 dependencies = [
  "async-trait",
  "base64 0.13.1",
@@ -2666,7 +2694,7 @@ dependencies = [
  "flate2",
  "ipnet",
  "iprange",
- "libunftp",
+ "libunftp 0.18.8",
  "ring",
  "serde",
  "serde_json",
@@ -2683,7 +2711,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6250fc0db7f5762f07490a36885195df5384b33f0e66f3798497cd3ee3bb7d1e"
 dependencies = [
  "async-trait",
- "libunftp",
+ "libunftp 0.18.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "pam",
  "tracing",
  "tracing-attributes",
@@ -2692,13 +2720,11 @@ dependencies = [
 [[package]]
 name = "unftp-auth-rest"
 version = "0.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "50dc8db3f9fe55498d7e213ce7e1ab61e61474d5930b0edc622e4031f6bb4924"
 dependencies = [
  "async-trait",
  "hyper",
  "hyper-rustls",
- "libunftp",
+ "libunftp 0.18.8",
  "percent-encoding",
  "regex",
  "serde",
@@ -2711,12 +2737,10 @@ dependencies = [
 [[package]]
 name = "unftp-sbe-fs"
 version = "0.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bfd97a3c9b4c1c642b874a5569009b639f811d40d39ce3540b92f68f1c65264b"
 dependencies = [
  "async-trait",
  "futures",
- "libunftp",
+ "libunftp 0.18.8",
  "path_abs",
  "tokio",
  "tokio-stream",
@@ -2727,8 +2751,6 @@ dependencies = [
 [[package]]
 name = "unftp-sbe-gcs"
 version = "0.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42dff1409b083b5fa679b37f6aa84f0d006919323d6a74c8ecc003b5830830b8"
 dependencies = [
  "async-trait",
  "base64 0.13.1",
@@ -2737,7 +2759,7 @@ dependencies = [
  "futures",
  "hyper",
  "hyper-rustls",
- "libunftp",
+ "libunftp 0.18.8",
  "mime",
  "percent-encoding",
  "serde",
