@@ -1,6 +1,8 @@
 use crate::{
     args,
-    domain::{EventDispatcher, FTPEvent, FTPEventPayload, NullEventDispatcher},
+    domain::{
+        EventDispatcher, FTPEvent, FTPEventPayload, NullEventDispatcher, StdoutEventDispatcher,
+    },
     infra::PubsubEventDispatcher,
 };
 
@@ -31,7 +33,7 @@ pub fn create_event_dispatcher(
             args::PUBSUB_TOPIC,
             args::PUBSUB_PROJECT
         )),
-        _ => Ok(Arc::new(NullEventDispatcher {})),
+        _ => Ok(Arc::new(StdoutEventDispatcher {})),
     }
 }
 
@@ -62,7 +64,7 @@ impl libunftp::notification::DataListener for FTPListener {
     async fn receive_data_event(&self, e: DataEvent, m: EventMeta) {
         let payload = match e {
             DataEvent::Got { path, .. } => FTPEventPayload::Get { path },
-            DataEvent::Put { path, .. } => FTPEventPayload::Put { path },
+            DataEvent::Put { path, realpath, .. } => FTPEventPayload::Put { path, realpath },
             DataEvent::Deleted { path } => FTPEventPayload::Delete { path },
             DataEvent::MadeDir { path } => FTPEventPayload::MakeDir { path },
             DataEvent::Renamed { from, to } => FTPEventPayload::Rename { from, to },

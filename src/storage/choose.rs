@@ -274,4 +274,19 @@ impl StorageBackend<User> for ChoosingVfs {
             InnerVfs::File(i) => i.cwd(user, path).await,
         }
     }
+
+    async fn full_path<P: AsRef<Path> + Send + Debug>(&self, path: P) -> storage::Result<PathBuf> {
+        match &self.inner {
+            InnerVfs::Cloud(i) => {
+                <unftp_sbe_gcs::CloudStorage as StorageBackend<User>>::full_path::<'_, '_, P>(
+                    i, path,
+                )
+                .await
+            }
+            InnerVfs::File(i) => {
+                <unftp_sbe_fs::Filesystem as StorageBackend<User>>::full_path::<'_, '_, P>(i, path)
+                    .await
+            }
+        }
+    }
 }

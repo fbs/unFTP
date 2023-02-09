@@ -195,4 +195,8 @@ impl StorageBackend<User> for RestrictingVfs {
     ) -> storage::Result<()> {
         self.delegate.cwd(user, path).await
     }
+
+    async fn full_path<P: AsRef<Path> + Send + Debug>(&self, path: P) -> storage::Result<PathBuf> {
+        self.delegate.full_path(path).await
+    }
 }

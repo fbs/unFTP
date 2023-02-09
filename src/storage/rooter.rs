@@ -244,6 +244,10 @@ where
         let path = Self::new_path(user, path.as_ref());
         self.inner.cwd(user, path).await
     }
+
+    async fn full_path<P: AsRef<Path> + Send + Debug>(&self, path: P) -> Result<PathBuf> {
+        self.inner.full_path(path).await
+    }
 }
 
 #[cfg(test)]

@@ -19,6 +19,17 @@ impl EventDispatcher<FTPEvent> for NullEventDispatcher {
     }
 }
 
+#[derive(Debug)]
+pub struct StdoutEventDispatcher {}
+
+#[async_trait]
+impl EventDispatcher<FTPEvent> for StdoutEventDispatcher {
+    async fn dispatch(&self, event: FTPEvent) {
+        println!("{:?}", event);
+        // Do Nothing
+    }
+}
+
 // The event that will be sent
 #[derive(Serialize, Deserialize, Debug)]
 pub struct FTPEvent {
@@ -50,6 +61,7 @@ pub enum FTPEventPayload {
     },
     Put {
         path: String,
+        realpath: String,
     },
     Delete {
         path: String,

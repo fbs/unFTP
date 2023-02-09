@@ -219,6 +219,7 @@ type VfsProducer = Box<
 // Creates the filesystem storage back-end
 fn fs_storage_backend(log: &Logger, m: &clap::ArgMatches) -> VfsProducer {
     let p: PathBuf = m.value_of(args::ROOT_DIR).unwrap().into();
+    println!("root dir: {:?}", p);
     let sub_log = Arc::new(log.new(o!("module" => "storage")));
     Box::new(move || {
         storage::RooterVfs::new(storage::RestrictingVfs {
